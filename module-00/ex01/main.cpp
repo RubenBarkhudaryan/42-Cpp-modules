@@ -1,36 +1,69 @@
 #include <iostream>
 #include "./PhoneBook.hpp"
 
-std::string	insert_arg(const std::string& _arg)
+bool	isValidArg(const std::string& arg, const std::string& type)
+{
+	std::size_t	start;
+
+	if (arg.empty())
+		return (false);
+	if (type == "name")
+	{
+		for (std::size_t i = 0; i < arg.length(); ++i)
+		{
+			if (!std::isalpha(arg[i]))
+				return (false);
+		}
+		return (true);
+	}
+	else if (type == "phone")
+	{
+		start = 0;
+		if (arg[0] == '+')
+			++start;
+		if (start == arg.length())
+			return (false);
+		for (std::size_t i = start; i < arg.length(); ++i)
+		{
+			if (!std::isdigit(arg[i]))
+				return (false);
+		}
+		return (true);
+	}
+	return (true);
+}
+
+std::string	insert_arg(const std::string& _arg, const std::string& type)
 {
 	std::string	arg;
 
-	while (arg.empty() || !arg[0])
+	do
 	{
-		std::cin.ignore();
 		std::cout << "Enter " << _arg << ": ";
-		std::getline(std::cin, arg);
-		if (!arg[0])
-			std::cout << "no\n";
-	}
+		if (!std::getline(std::cin, arg))
+		{
+			std::cout << "Interrupted process. Program exited with code: 1." << std::endl;
+			std::exit(1);
+		}
+	}	while (!isValidArg(arg, type));
 	return (arg);
 }
 
 Contact	create_contact()
 {
-	std::string	first_name;
-	std::string	last_name;
+	std::string	fname;
+	std::string	lname;
 	std::string	nickname;
-	std::string	phone_number;
-	std::string	darkest_secret;
+	std::string	number;
+	std::string	secret;
 
-	first_name = insert_arg("first name");
-	last_name = insert_arg("last name");
-	nickname = insert_arg("nickname");
-	phone_number = insert_arg("phone number");
-	darkest_secret = insert_arg("darkest secret");
+	fname = insert_arg("first name", "name");
+	lname = insert_arg("last name", "name");
+	nickname = insert_arg("nickname", "name");
+	number = insert_arg("phone number", "phone");
+	secret = insert_arg("darkest secret", "secret");
 
-	return (Contact(first_name, last_name, nickname, phone_number, darkest_secret));
+	return (Contact(fname, lname, nickname, number, secret));
 }
 
 int	main(void)
