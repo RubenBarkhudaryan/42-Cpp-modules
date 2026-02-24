@@ -23,9 +23,26 @@ void	PhoneBook::search(void)
 {
 	int	idx;
 
-	if (this->offset)
+	if (this->count)
 	{
-		std::cout << "Insert index (1...8): ";
+		std::cout << std::setw(10) << "|  Index  " << "|"
+					<< std::setw(10) << "First Name" << "|"
+					<< std::setw(10) << "Last Name" << "|"
+					<< std::setw(10) << "Nickname " << "|" <<std::endl;
+		std::cout << std::setw(10) << "|---------|"
+					<< std::setw(10) << "----------|"
+					<< std::setw(10) << "----------|"
+					<< std::setw(10) << "----------|" << std::endl;
+		for (int i = 0; i < this->count; ++i)
+		{
+			std::cout << "|" << std::setw(9) << i << "|";
+			std::cout << std::setw(10) << this->cropArgument(this->contacts[i].getFirstName(), 10) << "|";
+			std::cout << std::setw(10) << this->cropArgument(this->contacts[i].getLastName(), 10) << "|";
+			std::cout << std::setw(10) << this->cropArgument(this->contacts[i].getNickname(), 10) << "|";
+			std::cout << std::endl;
+		}
+
+		std::cout << "\nInsert index (1...8): ";
 		if (!(std::cin >> idx))
 		{
 			std::cout << "\nSearch process interrupted\n";
@@ -40,15 +57,11 @@ void	PhoneBook::search(void)
 				std::cout << "Contact with index " << idx << " not found." << std::endl;
 			else
 			{
-				std::cout << std::setw(10) << "Index" << "|" 
-							<< std::setw(10) << "First Name" << "|"
-							<< std::setw(10) << "Last Name" << "|"
-							<< std::setw(10) << "Nickname|" << std::endl;
-				std::cout << std::setw(10) << idx << "|";
-				std::cout << std::setw(10) << this->cropArgument(this->contacts[idx - 1].getFirstName(), 10) << "|";
-				std::cout << std::setw(10) << this->cropArgument(this->contacts[idx - 1].getLastName(), 10) << "|";
-				std::cout << std::setw(10) << this->cropArgument(this->contacts[idx - 1].getNickname(), 10) << "|";
-				std::cout << std::endl;
+				std::cout << "First name: " << this->contacts[idx - 1].getFirstName() << std::endl;
+				std::cout << "Last name: " << this->contacts[idx - 1].getLastName() << std::endl;
+				std::cout << "Nickname: " << this->contacts[idx - 1].getNickname() << std::endl;
+				std::cout << "Phone number: " << this->contacts[idx - 1].getPhoneNumber() << std::endl;
+				std::cout << "Darkest secret: " << this->contacts[idx - 1].getDarkestSecret() << std::endl;
 			}
 		}
 	}
