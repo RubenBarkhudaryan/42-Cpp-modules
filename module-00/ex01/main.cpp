@@ -1,7 +1,7 @@
 #include <iostream>
 #include "./PhoneBook.hpp"
 
-void	trim_string(std::string& str)
+void	trimString(std::string& str)
 {
 	std::size_t	start;
 	std::size_t	end;
@@ -45,14 +45,14 @@ int	main(void)
 			std::cout << "Bye!" << std::endl;
 			break ;
 		}
-		trim_string(command);
+		trimString(command);
 		if (command == "EXIT")
 		{
 			std::cout << "Bye!" << std::endl;
 			break ;
 		}
 		else if (command == "ADD")
-			phonebook.create_contact();
+			phonebook.createContact();
 		else if (command == "SEARCH")
 			phonebook.search();
 	}

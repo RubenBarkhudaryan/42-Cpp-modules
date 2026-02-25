@@ -3,6 +3,31 @@
 #include <cstdlib>
 #include "./PhoneBook.hpp"
 
+int	stringToInt(const std::string& str)
+{
+	int	i;
+	int	sign;
+	int	result;
+
+	i = 0;
+	sign = 1;
+	result = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (std::isdigit(str[i]))
+	{
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	return (result * sign);
+}
+
 PhoneBook::PhoneBook(void)
 {
 	this->offset = 0;
@@ -21,7 +46,8 @@ std::string	PhoneBook::cropArgument(const std::string& arg, std::size_t len)
 
 void	PhoneBook::search(void)
 {
-	int	idx;
+	int			idx;
+	std::string	ind;
 
 	if (this->count)
 	{
@@ -43,11 +69,13 @@ void	PhoneBook::search(void)
 		}
 
 		std::cout << "\nInsert index (1...8): ";
-		if (!(std::cin >> idx))
+		if (!std::getline(std::cin, ind))
 		{
 			std::cout << "\nSearch process interrupted\n";
 			return ;
 		}
+
+		idx = stringToInt(ind);
 
 		if (idx < 1 || idx > 8)
 			std::cout << "Invalid index : " << idx << std::endl;
@@ -198,7 +226,7 @@ void	PhoneBook::insert_arg(const std::string& _arg_name, std::string& arg, char 
 	}
 }
 
-void	PhoneBook::create_contact(void)
+void	PhoneBook::createContact(void)
 {
 	std::string	fname;
 	std::string	lname;

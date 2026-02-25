@@ -26,7 +26,7 @@ class	PhoneBook
 		~PhoneBook();
 
 		/*-----PhoneBook methods-----*/
-		void	create_contact(void);
+		void	createContact(void);
 		void	search(void);
 };
 
