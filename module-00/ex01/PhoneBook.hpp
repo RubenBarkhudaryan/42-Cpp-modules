@@ -2,8 +2,8 @@
 
 # define PHONEBOOK_HPP
 
-#include <string>
-#include "./Contact.hpp"
+# include <string>
+# include "./Contact.hpp"
 
 class	PhoneBook
 {
@@ -18,7 +18,7 @@ class	PhoneBook
 		bool		isValidNickname(const std::string &arg);
 		bool		isValidPhoneNumber(const std::string& arg);
 		bool		isDuplicate(const std::string& arg, char field);
-		void		insert_arg(const std::string& _arg_name, std::string& arg, char type);
+		void		insertArg(const std::string& _arg_name, std::string& arg, char type);
 	
 	public:
 		/*-----PhoneBook ctor/dtor-----*/

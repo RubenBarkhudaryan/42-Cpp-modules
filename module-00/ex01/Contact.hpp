@@ -2,7 +2,7 @@
 
 # define CONTACT_HPP
 
-#include <string>
+# include <string>
 
 class	Contact
 {

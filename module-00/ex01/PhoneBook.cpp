@@ -97,7 +97,6 @@ void	PhoneBook::search(void)
 		std::cout << "No contacts added to phonebook yet." << std::endl;
 }
 
-
 bool	PhoneBook::isValidName(const std::string &arg)
 {
 	if (arg.empty())
@@ -174,7 +173,7 @@ bool	PhoneBook::isDuplicate(const std::string& arg, char field)
 	return (false);
 }
 
-void	PhoneBook::insert_arg(const std::string& _arg_name, std::string& arg, char type)
+void	PhoneBook::insertArg(const std::string& _arg_name, std::string& arg, char type)
 {
 	if (type == 'n')
 	{
@@ -234,11 +233,11 @@ void	PhoneBook::createContact(void)
 	std::string	number;
 	std::string	secret;
 
-	this->insert_arg("first name", fname, 'n');
-	this->insert_arg("last name", lname, 'n');
-	this->insert_arg("nickname", nickname, 'n');
-	this->insert_arg("phone number", number, 'p');
-	this->insert_arg("darkest secret", secret, 's');
+	this->insertArg("first name", fname, 'n');
+	this->insertArg("last name", lname, 'n');
+	this->insertArg("nickname", nickname, 'n');
+	this->insertArg("phone number", number, 'p');
+	this->insertArg("darkest secret", secret, 's');
 
 	if (isDuplicate(nickname, 'n'))
 	{
