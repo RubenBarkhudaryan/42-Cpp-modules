@@ -5,6 +5,7 @@ void	Harl::debug(void)
 {
 	std::cout << CYAN << DEBUG << RESET << std::endl;
 }
+
 void	Harl::info(void)
 {
 	std::cout << GREEN << INFO << RESET << std::endl;
