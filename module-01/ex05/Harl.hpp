@@ -1,6 +1,6 @@
-#ifndef	HARL_CPP
+#ifndef	HARL_HPP
 
-# define HARL_CPP
+# define HARL_HPP
 
 # define DEBUG		"I love having extra bacon for my 7XL-double-cheese-triple-pickle-specialketchup burger.\n I really do!"
 # define INFO		"I cannot believe adding extra bacon costs more money.\n You didn't put enough bacon in my burger! If you did, I wouldn't be asking for more!"
@@ -27,4 +27,4 @@ class	Harl
 		void	complain(std::string level);
 };
 
-#endif //HARL_CPP
+#endif //HARL_HPP
