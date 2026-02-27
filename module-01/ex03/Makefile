@@ -1,4 +1,4 @@
-NAME		=	./exe
+NAME		=	battle
 
 CXX			=	g++
 CXXFLAGS	=	-std=c++98 -Wall -Wextra -Werror #-g3

@@ -1,9 +1,10 @@
-NAME		=	file
+NAME		=	harl
 
 CXX			=	g++
 CXXFLAGS	=	-std=c++98 -Wall -Wextra -Werror #-g3
 
-SRCS		=	./main.cpp
+SRCS		=	./main.cpp\
+				./Harl.cpp
 
 OBJS		=	$(SRCS:%.cpp=%.o)
 

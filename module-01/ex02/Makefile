@@ -1,4 +1,4 @@
-NAME		=	./address
+NAME		=	address
 
 CXX			=	g++
 CXXFLAGS	=	-std=c++98 -Wall -Wextra -Werror #-g3
