@@ -4,6 +4,8 @@
 
 *.out
 
+*.txt*
+
 account
 
 megaphone
