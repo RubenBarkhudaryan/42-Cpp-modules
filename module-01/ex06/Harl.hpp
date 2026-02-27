@@ -23,6 +23,7 @@ class	Harl
 		void	info(void);
 		void	warning(void);
 		void	error(void);
+		void	call(int pos);
 
 	public:
 		void	complain(std::string level);
