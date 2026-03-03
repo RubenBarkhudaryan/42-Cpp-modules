@@ -61,7 +61,7 @@ void	PhoneBook::search(void)
 					<< std::setw(10) << "----------|" << std::endl;
 		for (int i = 0; i < this->count; ++i)
 		{
-			std::cout << "|" << std::setw(9) << i << "|";
+			std::cout << "|" << std::setw(9) << i + 1 << "|";
 			std::cout << std::setw(10) << this->cropArgument(this->contacts[i].getFirstName(), 10) << "|";
 			std::cout << std::setw(10) << this->cropArgument(this->contacts[i].getLastName(), 10) << "|";
 			std::cout << std::setw(10) << this->cropArgument(this->contacts[i].getNickname(), 10) << "|";
