@@ -83,24 +83,7 @@ int main(void)
 	defaultA.attack();
 	defaultB.attack();
 
-	std::cout << "\n========== SCOPE TEST ==========\n";
-
-	HumanB	scopedHuman("Scoped");
-
-	{
-		Weapon tempWeapon("temporary dagger");
-		scopedHuman.setWeapon(tempWeapon);
-		scopedHuman.attack();
-
-		tempWeapon.setType("temporary dagger++");
-		scopedHuman.attack();
-	}
-
-	// ⚠️ Dangerous — weapon is destroyed here
-	std::cout << "Weapon went out of scope...\n";
-	scopedHuman.attack();  // Undefined behavior possible!
-
 	std::cout << "\n========== END ==========\n";
 
-	return 0;
+	return (0);
 }

@@ -67,6 +67,7 @@ int	main(int argc, char **argv)
 			std::cout << "Too many arguments." << std::endl;
 		else
 			std::cout << "Too few arguments." << std::endl;
+		std::cout << "Program usage: [executable] [filename] [find word/symbol] [replace with word/symbol]" << std::endl;
 		return (1);
 	}
 	return (0);

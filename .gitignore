@@ -1,13 +1,13 @@
 .vscode
 
 *.o
-
 *.out
-
 *.txt*
 
 account
-
 megaphone
-
 phonebook
+zombie
+replace
+harlFilter
+harl

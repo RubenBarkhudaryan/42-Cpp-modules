@@ -29,23 +29,6 @@ void	Harl::error(void)
 	std::cout << ERROR << RESET << std::endl;
 }
 
-void	Harl::call(int pos)
-{
-	void	(Harl::*functions[4])(void) =
-	{
-		&Harl::debug,
-		&Harl::info,
-		&Harl::warning,
-		&Harl::error,
-	};
-
-	for (int i = pos; i < 4; ++i)
-	{
-		(this->*functions[i])();
-		std::cout << std::endl;
-	}
-}
-
 void	Harl::complain(std::string level)
 {
 	int			idx = -1;
@@ -67,16 +50,13 @@ void	Harl::filter(int level)
 	switch (level)
 	{
 		case 0:
-			this->call(0);
-			break;
+			this->debug();
 		case 1:
-			this->call(1);
-			break;
+			this->info();
 		case 2:
-			this->call(2);
-			break;
+			this->warning();
 		case 3:
-			this->call(3);
+			this->error();
 			break;
 		default:
 			std::cout << DEFAULT << std::endl;
