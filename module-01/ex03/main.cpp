@@ -1,9 +1,12 @@
+
+/*
+
 #include "./Weapon.hpp"
 #include "./HumanA.hpp"
 #include "./HumanB.hpp"
 
-/*
 //===========SUBJECT CASES============
+
 int main()
 {
 	{
