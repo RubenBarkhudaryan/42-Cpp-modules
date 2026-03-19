@@ -13,7 +13,7 @@ Fixed::Fixed()
 Fixed::Fixed(const int val)
 {
 	std::cout << "Int constructor called\n";
-	this->val = val << this->fractional_bits;
+	this->val = val << this->fractional_bits; /* same as val * 2^8 */
 }
 
 Fixed::Fixed(const float val)
