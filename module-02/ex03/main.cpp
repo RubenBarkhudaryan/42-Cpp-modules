@@ -1,9 +1,6 @@
 #include <iostream>
 #include "./Point.hpp"
 
-// your bsp function
-// bool bsp(Point const a, Point const b, Point const c, Point const point);
-
 void	test(const std::string& name,
 			Point const& a,
 			Point const& b,
@@ -20,31 +17,24 @@ void	test(const std::string& name,
 
 int	main(void)
 {
-	// Triangle ABC
 	Point a(0, 0);
 	Point b(10, 0);
 	Point c(5, 10);
 
 	std::cout << "=== BASIC TESTS ===" << std::endl;
 
-	// ✅ clearly inside
 	test("Inside point", a, b, c, Point(5, 5));
 
-	// ❌ clearly outside
 	test("Outside point", a, b, c, Point(15, 5));
 
-	// ❌ on edge
 	test("On edge AB", a, b, c, Point(5, 0));
 
-	// ❌ on vertex
 	test("On vertex A", a, b, c, Point(0, 0));
 
-	// ❌ just outside near edge
 	test("Near edge outside", a, b, c, Point(5, -1));
 
 	std::cout << "\n=== ORIENTATION TEST ===" << std::endl;
 
-	// Same triangle but reversed order
 	test("Inside (reversed triangle)", c, b, a, Point(5, 5));
 
 	std::cout << "\n=== SMALL TRIANGLE ===" << std::endl;
