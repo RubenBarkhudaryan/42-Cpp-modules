@@ -3,11 +3,9 @@
 /*-----Point ctor/dtor-----*/
 
 Point::Point(void) : x(0), y(0)
-{
-}
+{}
 Point::Point(const float f1, const float f2) : x(f1), y(f2)
-{
-}
+{}
 
 Point::Point(const Point &other)
 {
@@ -16,8 +14,7 @@ Point::Point(const Point &other)
 }
 
 Point::~Point()
-{
-}
+{}
 
 /*-----Point operators-----*/
 

@@ -2,6 +2,8 @@
 
 # define FIXED_HPP
 
+# include <iostream>
+
 class	Fixed
 {
 
@@ -27,6 +29,6 @@ class	Fixed
 		int		toInt(void) const;
 };
 
-std::ostream&	operator<< (std::ostream& os, const Fixed& obj);
+std::ostream&	operator<<(std::ostream& os, const Fixed& obj);
 
 #endif //FIXED_HPP

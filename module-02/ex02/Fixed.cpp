@@ -1,5 +1,4 @@
 #include <cmath>
-#include <iostream>
 #include "./Fixed.hpp"
 
 const int	Fixed::fractional_bits = 8;
@@ -129,7 +128,7 @@ Fixed	Fixed::operator--(int)
 	return (temp);
 }
 
-std::ostream&	operator<< (std::ostream& os, const Fixed& obj)
+std::ostream&	operator<<(std::ostream& os, const Fixed& obj)
 {
 	os << obj.toFloat();
 	return (os);
@@ -149,7 +148,7 @@ void	Fixed::setRawBits(int const val)
 
 float	Fixed::toFloat(void) const
 {
-	return ((float) this->val / (1 << this->fractional_bits));
+	return (static_cast<float>(this->val) / (1 << this->fractional_bits));
 }
 
 int	Fixed::toInt(void) const
