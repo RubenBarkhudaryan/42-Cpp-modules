@@ -81,31 +81,3 @@ void	ScavTrap::attack(const std::string& target)
 				<< this->damagePoints
 				<< " points of damage!" << std::endl;
 }
-
-void	ScavTrap::takeDamage(unsigned int amount)
-{
-	if (this->hitPoints == 0)
-		return ;
-	if (amount >= static_cast<unsigned int>(this->hitPoints))
-		this->hitPoints = 0;
-	else
-		this->hitPoints -= amount;
-
-	std::cout << "ScavTrap " << this->name
-				<< " takes damage of amount "
-				<< amount << std::endl;
-	
-}
-
-void	ScavTrap::beRepaired(unsigned int amount)
-{
-	if (this->hitPoints == 0 || this->energyPoints == 0)
-		return ;
-
-	(this->energyPoints)--;
-	this->hitPoints += amount;
-
-	std::cout << "ScavTrap " << this->name
-				<< " repairs itself for "
-				<< amount << " HP!" << std::endl;
-}

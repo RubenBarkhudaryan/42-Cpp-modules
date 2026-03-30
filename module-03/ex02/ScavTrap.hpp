@@ -16,16 +16,14 @@ class	ScavTrap : public ClapTrap
 		ScavTrap();
 		ScavTrap(const std::string& _name);
 		ScavTrap(const ScavTrap& other);
-		~ScavTrap();
+		~ScavTrap(); /*override*/
 
 		/*ScavTrap operators*/
 		ScavTrap&	operator=(const ScavTrap& other);
 
 		/*ScavTrap methods*/
 		void		guardGate(void);
-		void		attack(const std::string& target);
-		void		takeDamage(unsigned int amount);
-		void		beRepaired(unsigned int amount);
+		void		attack(const std::string& target); /*override*/
 };
 
 #endif //SCAVTRAP_HPP
