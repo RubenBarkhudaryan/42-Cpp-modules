@@ -14,19 +14,18 @@ class	Character : public ICharacter
 
 	public:
 		/*Character ctors/dtor*/
-		Character();
 		Character(const std::string& name);
 		Character(const Character& other);
-		~Character();
+		~Character(); /*override*/
 
 		/*Character operators*/
 		Character&			operator=(const Character& other);
 
 		/*Character methods*/
 		std::string const	&getName() const;
-		void				equip(AMateria* materia);
-		void				unequip(int idx);
-		void				use(int idx, ICharacter& target);
+		void				equip(AMateria* materia); /*override*/
+		void				unequip(int idx); /*override*/
+		void				use(int idx, ICharacter& target); /*override*/
 };
 
 #endif //CHARACTER_HPP

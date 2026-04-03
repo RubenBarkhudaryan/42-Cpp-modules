@@ -1,13 +1,14 @@
-NAME		=	animal
+NAME		=	simulation
 
 CXX			=	c++
-CXXFLAGS	=	-std=c++98 -Wall -Wextra -Werror #-g3
+CXXFLAGS	=	-std=c++98 -Wall -Wextra -Werror -g3
 
 SRCS		=	./main.cpp\
-				./AMatreia.cpp\
+				./AMateria.cpp\
 				./Ice.cpp\
 				./Cure.cpp\
 				./Character.cpp\
+				./MateriaSource.cpp
 
 OBJS		=	$(SRCS:%.cpp=%.o)
 

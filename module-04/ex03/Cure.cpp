@@ -3,19 +3,13 @@
 
 /*Cure ctors/dtor*/
 Cure::Cure() : AMateria("cure")
-{
-	std::cout << "Cure default ctor called\n";
-}
+{}
 
 Cure::Cure(const Cure& other) : AMateria(other)
-{
-	std::cout << "Cure copy ctor called\n";
-}
+{}
 
 Cure::~Cure()
-{
-	std::cout << "Cure dtor called\n";
-}
+{}
 
 /*Cure operators*/
 Cure&	Cure::operator=(const Cure& other)

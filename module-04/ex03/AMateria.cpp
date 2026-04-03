@@ -3,19 +3,13 @@
 
 /*AMateria ctors/dtor*/
 AMateria::AMateria(std::string const &type) : type(type)
-{
-	std::cout << "AMateria parameterized ctor called\n";
-}
+{}
 
 AMateria::AMateria(const AMateria& other) : type(other.type)
-{
-	std::cout << "AMateria copy ctor called\n";
-}
+{}
 
 AMateria::~AMateria()
-{
-	std::cout << "AMateria dtor called\n";
-}
+{}
 
 /*AMateria operators*/
 AMateria&	AMateria::operator=(const AMateria& other)

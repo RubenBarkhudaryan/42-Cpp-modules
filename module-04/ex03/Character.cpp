@@ -2,23 +2,14 @@
 #include "./Character.hpp"
 
 /*Character ctors/dtor*/
-Character::Character() : name("John")
-{
-	std::cout << "Character default ctor called\n";
-	for (int i = 0; i < 4; ++i)
-		this->slots[i] = NULL;
-}
-
 Character::Character(const std::string& name) : name(name)
 {
-	std::cout << "Character parameterized ctor called\n";
 	for (int i = 0; i < 4; ++i)
 		this->slots[i] = NULL;
 }
 
 Character::Character(const Character& other) : name(other.name)
 {
-	std::cout << "Character copy ctor called\n";
 	for (int i = 0; i < 4; ++i)
 	{
 		if (other.slots[i] != NULL)
@@ -30,7 +21,6 @@ Character::Character(const Character& other) : name(other.name)
 
 Character::~Character()
 {
-	std::cout << "Character dtor called\n";
 	for (int i = 0; i < 4; ++i)
 		delete this->slots[i];
 }
@@ -39,7 +29,6 @@ Character::~Character()
 /*Character operators*/
 Character&	Character::operator=(const Character& other)
 {
-	std::cout << "Character copy assignment operator called\n";
 	if (this != &other)
 	{
 		this->name = other.name;
