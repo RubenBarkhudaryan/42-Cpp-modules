@@ -22,7 +22,10 @@ Character::Character(const Character& other) : name(other.name)
 Character::~Character()
 {
 	for (int i = 0; i < 4; ++i)
-		delete this->slots[i];
+	{
+		if (this->slots[i])
+			delete this->slots[i];
+	}
 }
 
 
