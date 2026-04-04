@@ -11,6 +11,7 @@ DiamondTrap::DiamondTrap() :
 	this->hitPoints = FragTrap::hitPoints;
 	this->energyPoints = ScavTrap::energyPoints;
 	this->damagePoints = FragTrap::damagePoints;
+	std::cout << "DiamondTrap default ctor called" << std::endl;
 }
 
 DiamondTrap::DiamondTrap(const std::string& name) :
@@ -22,6 +23,7 @@ DiamondTrap::DiamondTrap(const std::string& name) :
 	this->hitPoints = FragTrap::hitPoints;
 	this->energyPoints = ScavTrap::energyPoints;
 	this->damagePoints = FragTrap::damagePoints;
+	std::cout << "DiamondTrap parameterized ctor called" << std::endl;
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap& other) :
@@ -29,15 +31,20 @@ DiamondTrap::DiamondTrap(const DiamondTrap& other) :
 	ScavTrap(other),
 	FragTrap(other),
 	name(other.name)
-{}
+{
+	std::cout << "DiamondTrap copy ctor called" << std::endl;
+}
 
 DiamondTrap::~DiamondTrap()
-{}
+{
+	std::cout << "DiamondTrap dtor called" << std::endl;
+}
 
 
 /*DiamondTrap operators*/
 DiamondTrap&	DiamondTrap::operator=(const DiamondTrap& other)
 {
+	std::cout << "DiamondTrap copy assignment operator called" << std::endl;
 	if (this != &other)
 	{
 		ClapTrap::operator=(other);

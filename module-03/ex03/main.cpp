@@ -1,231 +1,43 @@
 #include <iostream>
-#include "./FragTrap.hpp"
-
-static void	printTitle(const std::string& title)
-{
-	std::cout << "\n========================================\n";
-	std::cout << title << std::endl;
-	std::cout << "========================================\n";
-}
+#include "./DiamondTrap.hpp"
 
 int	main(void)
 {
-	printTitle("DEFAULT CONSTRUCTOR TEST");
-	{
-		FragTrap	a;
+	DiamondTrap	diamond("DI4M0ND");
 
-		a.attack("enemy_1");
-		a.takeDamage(10);
-		a.beRepaired(5);
-		a.highFivesGuys();
-	}
+	std::cout << "\nTesting attack function" << std::endl;
+	diamond.attack("target");
 
-	printTitle("PARAMETERIZED CONSTRUCTOR TEST");
-	{
-		FragTrap	b("Fraggy");
+	std::cout << "\nTesting takeDamage function" << std::endl;
+	diamond.takeDamage(20);
 
-		b.attack("bandit");
-		b.takeDamage(25);
-		b.beRepaired(10);
-		b.highFivesGuys();
-	}
+	std::cout << "\nTesting beRepaired function" << std::endl;
+	diamond.beRepaired(50);
 
-	printTitle("COPY CONSTRUCTOR TEST");
-	{
-		FragTrap	original("Original");
+	std::cout << "\nCreating a second DiamondTrap object diamond2" << std::endl;
+	DiamondTrap	diamond2("DI4M0ND2");
 
-		original.attack("target_1");
-		original.takeDamage(30);
-		original.highFivesGuys();
+	std::cout << "\nTesting attack and takeDamage between diamond and diamond2" << std::endl;
+	diamond.attack("DI4M0ND2");
+	diamond2.takeDamage(25);
 
-		FragTrap	copy(original);
+	std::cout << "\nCreating a third DiamondTrap object diamond3 (copy of diamond2)" << std::endl;
+	DiamondTrap	diamond3 = diamond2;
 
-		copy.attack("target_2");
-		copy.beRepaired(15);
-		copy.highFivesGuys();
-	}
+	std::cout << "\nTesting attack and takeDamage between diamond2 and diamond3" << std::endl;
+	diamond2.attack("DI4M0ND3");
+	diamond3.takeDamage(20);
 
-	printTitle("ASSIGNMENT OPERATOR TEST");
-	{
-		FragTrap	left("Left");
-		FragTrap	right("Right");
+	std::cout << "\nCreating a fourth DiamondTrap object diamond4 (assigned from diamond)" << std::endl;
+	DiamondTrap	diamond4("DI4M0ND4");
+	diamond4 = diamond;
 
-		left.takeDamage(40);
-		left.attack("enemy_left");
-		left.highFivesGuys();
+	std::cout << "\nTesting attack and takeDamage between diamond and diamond4" << std::endl;
+	diamond.attack("DI4M0ND4");
+	diamond4.takeDamage(50);
 
-		right = left;
-		right.attack("enemy_right");
-		right.beRepaired(20);
-		right.highFivesGuys();
-	}
-
-	printTitle("BASIC ATTACK LOOP TEST");
-	{
-		FragTrap	c("Attacker");
-
-		for (int i = 0; i < 5; i++)
-			c.attack("dummy");
-	}
-
-	printTitle("ENERGY DEPLETION TEST");
-	{
-		FragTrap	d("NoEnergy");
-
-		for (int i = 0; i < 105; i++)
-			d.attack("wall");
-
-		d.beRepaired(10);
-		d.attack("last_try");
-		d.highFivesGuys();
-	}
-
-	printTitle("TAKE DAMAGE TEST");
-	{
-		FragTrap	e("Tank");
-
-		e.takeDamage(1);
-		e.takeDamage(20);
-		e.takeDamage(30);
-		e.takeDamage(10);
-		e.beRepaired(5);
-	}
-
-	printTitle("OVERKILL DAMAGE TEST");
-	{
-		FragTrap	f("Fragile");
-
-		f.takeDamage(9999);
-		f.attack("nobody");
-		f.beRepaired(10);
-		f.takeDamage(1);
-		f.highFivesGuys();
-	}
-
-	printTitle("REPAIR LOOP TEST");
-	{
-		FragTrap	g("Medic");
-
-		g.takeDamage(40);
-		for (int i = 0; i < 10; i++)
-			g.beRepaired(3);
-	}
-
-	printTitle("MIXED ACTION CHAIN TEST");
-	{
-		FragTrap	h("Hybrid");
-
-		h.attack("enemy_a");
-		h.attack("enemy_b");
-		h.takeDamage(15);
-		h.beRepaired(5);
-		h.highFivesGuys();
-		h.attack("enemy_c");
-		h.takeDamage(50);
-		h.beRepaired(10);
-		h.highFivesGuys();
-		h.attack("enemy_d");
-	}
-
-	printTitle("DEATH TEST");
-	{
-		FragTrap	i("DeadTrap");
-
-		i.takeDamage(100);
-		i.attack("ghost");
-		i.beRepaired(10);
-		i.takeDamage(1);
-		i.highFivesGuys();
-	}
-
-	printTitle("SMALL DAMAGE UNTIL DEATH TEST");
-	{
-		FragTrap	j("SlowDeath");
-
-		for (int i = 0; i < 20; i++)
-			j.takeDamage(5);
-
-		j.attack("after_death");
-		j.beRepaired(1);
-	}
-
-	printTitle("ENERGY + REPAIR COMBINATION TEST");
-	{
-		FragTrap	k("Combo");
-
-		for (int i = 0; i < 20; i++)
-			k.beRepaired(1);
-		for (int i = 0; i < 85; i++)
-			k.attack("training_bot");
-
-		k.beRepaired(5);
-		k.attack("final_bot");
-	}
-
-	printTitle("HIGH FIVE STRESS TEST");
-	{
-		FragTrap	m("Friendly");
-
-		for (int i = 0; i < 8; i++)
-			m.highFivesGuys();
-	}
-
-	printTitle("COPY INDEPENDENCE TEST");
-	{
-		FragTrap	a("Alpha");
-
-		a.takeDamage(20);
-		a.highFivesGuys();
-
-		FragTrap	b(a);
-
-		a.attack("enemy_a");
-		a.takeDamage(10);
-
-		b.attack("enemy_b");
-		b.beRepaired(20);
-		b.highFivesGuys();
-	}
-
-	printTitle("ASSIGNMENT INDEPENDENCE TEST");
-	{
-		FragTrap	a("First");
-		FragTrap	b("Second");
-
-		a.takeDamage(35);
-		a.highFivesGuys();
-		b = a;
-
-		a.attack("enemy_first");
-		a.takeDamage(10);
-
-		b.beRepaired(15);
-		b.highFivesGuys();
-		b.attack("enemy_second");
-	}
-
-	printTitle("LONG SURVIVAL TEST");
-	{
-		FragTrap	boss("Boss");
-
-		boss.attack("hero");
-		boss.takeDamage(10);
-		boss.beRepaired(5);
-		boss.attack("hero");
-		boss.highFivesGuys();
-		boss.takeDamage(20);
-		boss.attack("hero");
-		boss.beRepaired(15);
-		boss.takeDamage(30);
-		boss.attack("hero");
-		boss.highFivesGuys();
-		boss.takeDamage(40);
-		boss.attack("hero");
-		boss.beRepaired(10);
-		boss.takeDamage(50);
-		boss.attack("hero");
-	}
-
-	printTitle("END OF TESTS");
+	std::cout << "\nTesting special functions, whoAmI and highFivesGuys" << std::endl;
+	diamond.whoAmI();
+	diamond.highFivesGuys();
 	return (0);
 }
