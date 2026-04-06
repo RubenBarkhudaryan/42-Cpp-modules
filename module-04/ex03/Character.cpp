@@ -2,6 +2,12 @@
 #include "./Character.hpp"
 
 /*Character ctors/dtor*/
+Character::Character() : name("default")
+{
+	for (int i = 0; i < 4; ++i)
+		this->slots[i] = NULL;
+}
+
 Character::Character(const std::string& name) : name(name)
 {
 	for (int i = 0; i < 4; ++i)
@@ -50,6 +56,11 @@ Character&	Character::operator=(const Character& other)
 
 
 /*Character methods*/
+void	Character::setName(const std::string& new_name)
+{
+	this->name = new_name;
+}
+
 std::string const	&Character::getName() const
 {
 	return (this->name);

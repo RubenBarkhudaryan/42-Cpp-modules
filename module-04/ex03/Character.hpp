@@ -14,6 +14,7 @@ class	Character : public ICharacter
 
 	public:
 		/*Character ctors/dtor*/
+		Character();
 		Character(const std::string& name);
 		Character(const Character& other);
 		~Character(); /*override*/
@@ -23,6 +24,7 @@ class	Character : public ICharacter
 
 		/*Character methods*/
 		std::string const	&getName() const;
+		void				setName(const std::string& new_name);
 		void				equip(AMateria* materia); /*override*/
 		void				unequip(int idx); /*override*/
 		void				use(int idx, ICharacter& target); /*override*/
