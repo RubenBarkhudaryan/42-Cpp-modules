@@ -21,12 +21,18 @@ The core idea of this cursus is to build a solid C++ foundation step by step: fr
 - `ex00` to `ex02`: fixed-point number class, canonical form, and overloaded operators.
 - `ex03` BSP: immutable points and geometric logic with custom numeric types.
 
+### Module 03 - Inheritance and Class Hierarchies (Completed)
+- Exercises covering single and multiple inheritance, protected members, virtual methods, and proper resource management in derived classes.
+- Implementations and tests are available in the `module-03/` directory.
+
+### Module 04 - Subtype Polymorphism and Abstract Interfaces (Completed)
+- Exercises focused on polymorphism, abstract base classes, pure virtual functions, and runtime behavior through interfaces.
+- Implementations and examples are available in the `module-04/` directory.
+
 ## What I Am Going To Do
 
 The next modules continue the same progression toward modern, robust C++:
 
-- [ ] **Module 03**: inheritance and class hierarchies.
-- [ ] **Module 04**: subtype polymorphism, abstract classes, interfaces.
 - [ ] **Module 05**: exceptions, error handling, and robust APIs.
 - [ ] **Module 06**: scalar conversions and C++ casts.
 - [ ] **Module 07**: templates (generic programming).
