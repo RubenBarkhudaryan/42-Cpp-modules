@@ -4,13 +4,14 @@
 
 # include <string>
 # include <iostream>
+# include <exception>
 
 class	Bureaucrat
 {
 
 	private:
-		int			grade;
-		std::string	name;
+		const std::string	name;
+		int					grade;
 
 	public:
 
@@ -22,14 +23,24 @@ class	Bureaucrat
 
 		/*Bureaucrat operators*/
 		Bureaucrat&	operator=(const Bureaucrat& other);
-		Bureaucrat&	operator++(void);
-		Bureaucrat	operator++(int);
-		Bureaucrat&	operator--(void);
-		Bureaucrat	operator--(int);
-
+		
 		/*Bureaucrat methods*/
 		std::string	getName(void) const;
 		int			getGrade(void) const;
+		void		incrementGrade(void);
+		void		decrementGrade(void);
+
+	class	GradeTooHighException : public std::exception
+	{
+		public:
+			const char	*what() const throw();
+	};
+
+	class	GradeTooLowException : public std::exception
+	{
+		public:
+			const char	*what() const throw();
+	};
 };
 
 std::ostream&	operator<<(std::ostream& os, const Bureaucrat& obj);

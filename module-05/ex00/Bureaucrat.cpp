@@ -3,7 +3,7 @@
 /*Bureaucrat ctors/dtor*/
 Bureaucrat::Bureaucrat() :
 	name("default"),
-	grade(150)
+	grade(75)
 {
 	std::cout << "Bureaucrat default ctor called" << std::endl;
 }
@@ -13,6 +13,10 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade) :
 	grade(grade)
 {
 	std::cout << "Bureaucrat parameterized ctor called" << std::endl;
+	if (grade < 1)
+		throw Bureaucrat::GradeTooHighException();
+	else if (grade > 150)
+		throw Bureaucrat::GradeTooLowException();
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other) :
@@ -27,34 +31,18 @@ Bureaucrat::~Bureaucrat()
 	std::cout << "Bureaucrat dtor called" << std::endl;
 }
 
+
 /*Bureaucrat operators*/
 Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& other)
 {
 	if (this != &other)
-	{
-		this->name = other.name;
 		this->grade = other.grade;
-	}
 	return (*this);
 }
 
-Bureaucrat&	Bureaucrat::operator++(void)
-{
-	
-}
-
-Bureaucrat	Bureaucrat::operator++(int)
-{}
-
-Bureaucrat&	Bureaucrat::operator--(void)
-{}
-
-Bureaucrat	Bureaucrat::operator--(int)
-{}
-
 std::ostream&	operator<<(std::ostream& os, const Bureaucrat& obj)
 {
-	os << obj.getName() << ", bureaucrat grade " << obj.getGrade() << ".\n";
+	os << obj.getName() << ", bureaucrat grade " << obj.getGrade() << "\n";
 
 	return (os);
 }
@@ -69,4 +57,31 @@ int	Bureaucrat::getGrade(void) const
 std::string	Bureaucrat::getName(void) const
 {
 	return (this->name);
+}
+
+void	Bureaucrat::incrementGrade(void)
+{
+	if (this->grade <= 1)
+		throw	Bureaucrat::GradeTooHighException();
+	else
+		--(this->grade);
+}
+
+void	Bureaucrat::decrementGrade(void)
+{
+	if (this->grade >= 150)
+		throw	Bureaucrat::GradeTooLowException();
+	else
+		++(this->grade);
+}
+
+/*Bureaucrat inside classes methods*/
+const char	*Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return "Bureaucrat::GradeTooHighException -> grade out of range";
+}
+
+const char	*Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return "Bureaucrat::GradeTooLowException -> grade out of range";
 }
