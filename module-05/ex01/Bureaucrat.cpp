@@ -1,3 +1,4 @@
+#include "./Form.hpp"
 #include "./Bureaucrat.hpp"
 
 /*Bureaucrat ctors/dtor*/
@@ -5,14 +6,14 @@ Bureaucrat::Bureaucrat() :
 	name("default"),
 	grade(75)
 {
-	std::cout << "Bureaucrat default ctor called" << std::endl;
+	// std::cout << "Bureaucrat default ctor called" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade) :
 	name(name),
 	grade(grade)
 {
-	std::cout << "Bureaucrat parameterized ctor called" << std::endl;
+	// std::cout << "Bureaucrat parameterized ctor called" << std::endl;
 	if (grade < 1)
 		throw Bureaucrat::GradeTooHighException();
 	else if (grade > 150)
@@ -23,19 +24,19 @@ Bureaucrat::Bureaucrat(const Bureaucrat& other) :
 	name(other.name),
 	grade(other.grade)
 {
-	std::cout << "Bureaucrat copy ctor called" << std::endl;
+	// std::cout << "Bureaucrat copy ctor called" << std::endl;
 }
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Bureaucrat dtor called" << std::endl;
+	// std::cout << "Bureaucrat dtor called" << std::endl;
 }
 
 
 /*Bureaucrat operators*/
 Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& other)
 {
-	std::cout << "Bureaucrat copy assignment operator called" << std::endl;
+	// std::cout << "Bureaucrat copy assignment operator called" << std::endl;
 	if (this != &other)
 		this->grade = other.grade;
 	return (*this);
@@ -74,6 +75,27 @@ void	Bureaucrat::decrementGrade(void)
 		throw	Bureaucrat::GradeTooLowException();
 	else
 		++(this->grade);
+}
+
+void	Bureaucrat::signForm(Form& form) const
+{
+	try
+	{
+		if(form.beSigned(*this))
+		{
+			std::cout << this->name
+						<< " signed "
+						<< form.getName() << std::endl;
+		}
+	}
+	catch (const std::exception& ex)
+	{
+
+		std::cout << this->name
+					<< " couldn't sign "
+					<< form.getName() << " because "
+					<< ex.what() << std::endl;
+	}
 }
 
 /*Bureaucrat inside classes methods*/
