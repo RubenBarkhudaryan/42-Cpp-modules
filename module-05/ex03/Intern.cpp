@@ -43,7 +43,7 @@ AForm	*Intern::makeForm(const std::string& form_name, const std::string& target)
 {
 	const Pair	forms[3] =
 	{
-		{"create shrubbery", &Intern::createShrubberyForm},
+		{"shrubbery creation", &Intern::createShrubberyForm},
 		{"robotomy request", &Intern::createRobotomyForm},
 		{"presidential pardon", &Intern::createPresidentialForm}
 	};

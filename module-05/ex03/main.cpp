@@ -21,7 +21,7 @@ int	main()
 		std::cout << bob << std::endl;
 		std::cout << jim << std::endl;
 
-		AForm*	shrubbery = someIntern.makeForm("create shrubbery", "home");
+		AForm*	shrubbery = someIntern.makeForm("shrubbery creation", "home");
 		AForm*	robotomy = someIntern.makeForm("robotomy request", "Bender");
 		AForm*	pardon = someIntern.makeForm("presidential pardon", "Marvin");
 
