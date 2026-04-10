@@ -51,7 +51,7 @@ int	main()
 	{
 		std::cout << "File error: " << e.what() << std::endl;
 	}
-	catch (std::exception& e) 
+	catch (std::exception& e)
 	{
 		std::cout << "Execution Exception: " << e.what() << std::endl;
 	}

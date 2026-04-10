@@ -9,7 +9,7 @@ int main()
 		Bureaucrat a("Alice", 75);
 		std::cout << a << std::endl;
 	}
-	catch (std::exception &e)
+	catch (const std::exception &e)
 	{
 		std::cout << e.what() << std::endl;
 	}
@@ -19,7 +19,7 @@ int main()
 	{
 		Bureaucrat b("Bob", 0);
 	}
-	catch (std::exception &e)
+	catch (const Bureaucrat::GradeTooHighException &e)
 	{
 		std::cout << e.what() << std::endl;
 	}
@@ -29,7 +29,7 @@ int main()
 	{
 		Bureaucrat c("Charlie", 151);
 	}
-	catch (std::exception &e)
+	catch (const Bureaucrat::GradeTooLowException &e)
 	{
 		std::cout << e.what() << std::endl;
 	}
@@ -45,7 +45,7 @@ int main()
 
 		d.incrementGrade(); // should throw
 	}
-	catch (std::exception &e)
+	catch (const Bureaucrat::GradeTooHighException &e)
 	{
 		std::cout << e.what() << std::endl;
 	}
@@ -61,7 +61,7 @@ int main()
 
 		e.decrementGrade(); // should throw
 	}
-	catch (std::exception &e)
+	catch (const Bureaucrat::GradeTooLowException &e)
 	{
 		std::cout << e.what() << std::endl;
 	}
@@ -77,7 +77,7 @@ int main()
 		h = f; // assignment
 		std::cout << "Assigned: " << h << std::endl;
 	}
-	catch (std::exception &e)
+	catch (const std::exception &e)
 	{
 		std::cout << e.what() << std::endl;
 	}

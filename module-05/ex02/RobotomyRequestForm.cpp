@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <iostream>
 #include "./Bureaucrat.hpp"
 #include "./RobotomyRequestForm.hpp"
@@ -37,13 +38,15 @@ bool	RobotomyRequestForm::execute(const Bureaucrat& executor) const
 	if (!this->getStatus())
 		throw AForm::FormNotSignedException();
 	if (executor.getGrade() > this->getExecuteGrade())
-	{
-		std::cout << "Robotomy failed" << std::endl;
 		throw AForm::GradeTooLowException();
+	if ((std::rand() % 2) == 0)
+	{
+		std::cout << "[Some drilling noises...]\n"
+					<< this->target
+					<< " has been robotomized successfully 50% of the time."
+					<< std::endl;
 	}
-	std::cout << "[Some drilling noises...]\n"
-				<< this->target
-				<< " has been robotomized successfully 50% of the time."
-				<< std::endl;
+	else
+		std::cout << "Robotomy failed" << std::endl;
 	return (true);
 }
