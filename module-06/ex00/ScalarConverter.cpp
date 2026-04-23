@@ -164,17 +164,20 @@ void	ScalarConverter::convert(const std::string& arg)
 			std::cout << "double: " << arg.substr(0, arg.size() - 1) << std::endl;
 		}
 	}
+
 	else if (is_char(arg))
 	{
 		double	d = static_cast<double>(arg[0]);
 		print_converted(d, 1);
 	}
+
 	else if (is_int(arg) || is_float(arg) || is_double(arg))
 	{
 		double	d = std::strtod(arg.c_str(), NULL);
 		int		prec_num = get_prec_num(arg);
 		print_converted(d, prec_num == 0 ? 1 : prec_num);
 	}
+
 	else
 	{
 		std::cout << "char: impossible" << std::endl;
