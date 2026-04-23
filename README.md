@@ -21,21 +21,38 @@ The core idea of this cursus is to build a solid C++ foundation step by step: fr
 - `ex00` to `ex02`: fixed-point number class, canonical form, and overloaded operators.
 - `ex03` BSP: immutable points and geometric logic with custom numeric types.
 
-### Module 03 - Inheritance and Class Hierarchies (Completed)
-- Exercises covering single and multiple inheritance, protected members, virtual methods, and proper resource management in derived classes.
-- Implementations and tests are available in the `module-03/` directory.
+### Module 03 - Inheritance and Class Hierarchies
+- `ex00` ClapTrap: base class design, constructors/destructors, and action methods.
+- `ex01` ScavTrap: single inheritance and specialization of base behavior.
+- `ex02` FragTrap: additional derived class behavior and identity management.
+- `ex03` DiamondTrap: multiple inheritance, ambiguity handling, and class composition.
 
-### Module 04 - Subtype Polymorphism and Abstract Interfaces (Completed)
-- Exercises focused on polymorphism, abstract base classes, pure virtual functions, and runtime behavior through interfaces.
-- Implementations and examples are available in the `module-04/` directory.
+### Module 04 - Subtype Polymorphism and Abstract Interfaces
+- `ex00` Animal/Cat/Dog: virtual functions and runtime polymorphism.
+- `ex01` Brain integration: deep copy correctness and dynamic resource ownership.
+- `ex02` Abstract Animal: pure virtual interfaces and non-instantiable base classes.
+- `ex03` Materia system: interface-driven design (`AMateria`, `ICharacter`, `IMateriaSource`) and cloning/equip logic.
+
+### Module 05 - Exceptions and Robust Class Design
+- `ex00` Bureaucrat: grade constraints and exception handling in object lifecycle.
+- `ex01` Form: interaction between classes with validation and signed state rules.
+- `ex02` Concrete forms: specialized form execution workflows and exception-safe behavior.
+- `ex03` Intern: dynamic form creation (factory pattern) with robust error handling.
+
+### Module 06 - C++ Casts and Scalar Conversion
+- `ex00` ScalarConverter: parsing and converting scalar literals across core types.
+- `ex01` Serializer: pointer/integer round-trip with `reinterpret_cast`.
+- `ex02` RTTI: runtime type identification with `dynamic_cast` and polymorphic base classes.
+
+### Module 07 - Templates and Generic Programming
+- `ex00` `whatever`: function templates (`swap`, `min`, `max`) and generic comparisons.
+- `ex01` `iter`: template-based iteration over raw arrays with function callbacks.
+- `ex02` `Array`: dynamic template container with bounds checking and canonical form.
 
 ## What I Am Going To Do
 
 The next modules continue the same progression toward modern, robust C++:
 
-- [ ] **Module 05**: exceptions, error handling, and robust APIs.
-- [ ] **Module 06**: scalar conversions and C++ casts.
-- [ ] **Module 07**: templates (generic programming).
 - [ ] **Module 08**: templated containers, iterators, and algorithms.
 - [ ] **Module 09**: practical STL use and algorithmic problem solving.
 
