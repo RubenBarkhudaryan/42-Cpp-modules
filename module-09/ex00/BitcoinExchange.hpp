@@ -9,6 +9,7 @@
 # include <map>
 # include <string>
 # include <vector>
+# include <utility>
 
 class	BitcoinExchange
 {
@@ -23,21 +24,21 @@ class	BitcoinExchange
 
 		/*-----BitcoinExchange methods-----*/
 		void	evaluate(const std::string& input_db_name);
-		std::map<std::string, float>	parseDB(const std::string& path, char separator, bool is_input);
+		std::map<std::string, double>	parseDB(const std::string& path);
 };
 
 std::string					trimStr(const std::string& input);
 std::vector<std::string>	split(const std::string& str, char target);
 bool						isLeap(int year);
 bool						isValidDate(const std::string& date);
+bool						isValidPair(const std::vector<std::string>& splited);
 bool						isTitle(const std::vector<std::string>& line);
 void						addValue(
 								const std::string& src,
-								std::map<std::string, float>& data,
-								char separator, bool is_input);
+								std::map<std::string, double>& data);
 void						printEvaluation(
-								std::map<std::string, float>::iterator search,
-								std::map<std::string, float>::iterator match,
-								const std::map<std::string, float>& data);
+								const std::pair<std::string, double>& search,
+								std::map<std::string, double>::iterator match,
+								const std::map<std::string, double>& data);
 
 #endif //BITCOIN_EXCHANGE_HPP

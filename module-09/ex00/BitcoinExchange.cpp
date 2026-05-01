@@ -4,6 +4,7 @@
 #include <cctype>
 #include <cstdlib>
 #include <map>
+#include <utility>
 #include <vector>
 #include <string>
 
@@ -31,6 +32,9 @@ std::string	trimStr(const std::string& input)
 
 	start = 0;
 	end = input.size() - 1;
+
+	if (start == end && !input.empty())
+		return (input);
 
 	while (start < input.size())
 	{
@@ -120,58 +124,93 @@ bool	isValidDate(const std::string& date)
 
 bool	isTitle(const std::vector<std::string>& line)
 {
-	return (line.size() == 2
-			&& line[0] == "date"
-			&& (line[1] == "exchange_rate" || line[1] == "value"));
+	if (line.size() == 2)
+	{
+		std::string	first = trimStr(line[0]);
+		std::string	second = trimStr(line[1]);
+		return (first == "date" && (second == "exchange_rate" || second == "value"));
+	}
+	return (false);
+}
+
+bool	isValidPair(const std::vector<std::string>& splited)
+{
+	std::pair<std::string, double>	pair;
+
+	if (splited.size() == 2)
+	{
+		pair.first = trimStr(splited[0]);
+		pair.second = std::strtod(trimStr(splited[1]).c_str(), NULL);
+
+		if (!isValidDate(pair.first))
+		{
+			std::cout << "Error: bad input => " << pair.first << std::endl;
+			return (false);
+		}
+		else if (pair.second < 0.0)
+		{
+			std::cout << "Error: not a positive number." << std::endl;
+			return (false);
+		}
+		else if (pair.second > 1000.0)
+		{
+			std::cout << "Error: too large a number." << std::endl;
+			return (false);
+		}
+		return (true);
+	}
+
+	if (!splited.empty() && splited.size() < 2)
+	{
+		if (!isValidDate(trimStr(splited[0])))
+			std::cout << "Error: bad input => " << splited[0] << std::endl;
+	}
+	else
+		std::cout << "Error: bad input => too many args" << std::endl;
+	return (false);
 }
 
 void	addValue(
 		const std::string& src,
-		std::map<std::string, float>& data,
-		char separator,
-		bool is_input)
+		std::map<std::string, double>& data)
 {
 	std::string					key;
-	float						value;
-	char						*end;
+	double						value;
 	std::vector<std::string>	split_line;
 
-	split_line = split(src, separator);
+	split_line = split(src, ',');
 
 	if (split_line.size() != 2)
 		return ;
 
 	key = trimStr(split_line[0]);
-	value = std::strtof(trimStr(split_line[1]).c_str(), &end);
+	value = std::strtod(trimStr(split_line[1]).c_str(), NULL);
 
-	if (*end != '\0' || value < 0.0f || !isValidDate(key))
-		return ;
-
-	if (is_input && (value < 0.0f || value > 1000.0f))
+	if (value < 0.0 || !isValidDate(key))
 		return ;
 
 	data[key] = value;
 }
 
-void	printEvaluation(std::map<std::string, float>::iterator search,
-						std::map<std::string, float>::iterator match,
-						const std::map<std::string, float>& data)
+void	printEvaluation(const std::pair<std::string, double>& search,
+						std::map<std::string, double>::iterator match,
+						const std::map<std::string, double>& data)
 {
 	if (match == data.end())
 	{
 		--match;
-		std::cout << search->first
-					<< " => " << search->second
-					<< " = " << match->second * search->second
+		std::cout << search.first
+					<< " => " << search.second
+					<< " = " << match->second * search.second
 					<< std::endl;
 		return ;
 	}
 
-	if (match->first == search->first)
+	if (match->first == search.first)
 	{
-		std::cout << search->first
-					<< " => " << search->second
-					<< " = " << match->second * search->second
+		std::cout << search.first
+					<< " => " << search.second
+					<< " = " << match->second * search.second
 					<< std::endl;
 		return ;
 	}
@@ -179,23 +218,23 @@ void	printEvaluation(std::map<std::string, float>::iterator search,
 	if (match == data.begin())
 	{
 		std::cout << "Error: no data found for ["
-				<< search->first << "]" << std::endl;
+				<< search.first << "]" << std::endl;
 		return;
 	}
 
 	--match;
-	std::cout << search->first
-			<< " => " << search->second
-			<< " = " << search->second * match->second
+	std::cout << search.first
+			<< " => " << search.second
+			<< " = " << search.second * match->second
 			<< std::endl;
 }
 
 /*-----BitcoinExchange methods-----*/
-std::map<std::string, float>	BitcoinExchange::parseDB(const std::string& path, char separator, bool is_input)
+std::map<std::string, double>	BitcoinExchange::parseDB(const std::string& path)
 {
 	std::ifstream					db(path.c_str());
 	std::string						line;
-	std::map<std::string, float>	data;
+	std::map<std::string, double>	data;
 
 	if (!db.is_open())
 		throw	std::invalid_argument(DB_ERROR);
@@ -203,30 +242,56 @@ std::map<std::string, float>	BitcoinExchange::parseDB(const std::string& path, c
 	if (!std::getline(db, line))
 		throw std::invalid_argument(EMPTY_FILE);
 
-	if (!isTitle(split(line, separator)))
-		addValue(line, data, separator, is_input);
+	if (!isTitle(split(line, ',')))
+		addValue(line, data);
 
 	while (std::getline(db, line))
-		addValue(line, data, separator, is_input);
+		addValue(line, data);
 
 	return (data);
 }
 
 void	BitcoinExchange::evaluate(const std::string& input_db_name)
 {
-	std::map<std::string, float>	input_data;
-	std::map<std::string, float>	data;
+	std::ifstream					input_db(input_db_name.c_str());
+	std::string						line;
+	std::map<std::string, double>	data;
 
-	data = this->parseDB("./data.csv", ',', false);
+	data = this->parseDB("./data.csv");
 
 	if (data.empty())
 		throw	std::invalid_argument(EMPTY_DATA);
 
-	input_data = this->parseDB(input_db_name, '|', true);
+	if (!input_db.is_open())
+		throw	std::invalid_argument(DB_ERROR);
 
-	if (input_data.empty())
-		throw	std::invalid_argument(EMPTY_DATA);
+	if (!std::getline(input_db, line))
+		throw	std::invalid_argument(EMPTY_FILE);
 
-	for (std::map<std::string, float>::iterator it = input_data.begin(); it != input_data.end(); ++it)
-		printEvaluation(it, data.lower_bound(it->first), data);
+	std::vector<std::string>		splited;
+	std::pair<std::string, double>	pair;
+
+	splited = split(line, '|');
+
+	if (!isTitle(splited))
+	{
+		if (isValidPair(splited))
+		{
+			pair.first = trimStr(splited[0]);
+			pair.second = std::strtod(splited[1].c_str(), NULL);
+			printEvaluation(pair, data.lower_bound(pair.first), data);
+		}
+	}
+
+	while (std::getline(input_db, line))
+	{
+		splited = split(line, '|');
+
+		if (isValidPair(splited))
+		{
+			pair.first = trimStr(splited[0]);
+			pair.second = std::strtod(splited[1].c_str(), NULL);
+			printEvaluation(pair, data.lower_bound(pair.first), data);
+		}
+	}
 }
