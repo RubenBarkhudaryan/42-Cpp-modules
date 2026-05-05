@@ -48,8 +48,8 @@ std::string	trimStr(const std::string& input)
 			break;
 		--end;
 	}
-	if (end > start)
-		return (input.substr(start, end - start + 1));
+	if (end >= start)
+		return (input.substr(start, (end - start) + 1));
 	return ("");
 }
 
@@ -278,7 +278,7 @@ void	BitcoinExchange::evaluate(const std::string& input_db_name)
 		if (isValidPair(splited))
 		{
 			pair.first = trimStr(splited[0]);
-			pair.second = std::strtod(splited[1].c_str(), NULL);
+			pair.second = std::strtod(trimStr(splited[1]).c_str(), NULL);
 			printEvaluation(pair, data.lower_bound(pair.first), data);
 		}
 	}
@@ -290,7 +290,7 @@ void	BitcoinExchange::evaluate(const std::string& input_db_name)
 		if (isValidPair(splited))
 		{
 			pair.first = trimStr(splited[0]);
-			pair.second = std::strtod(splited[1].c_str(), NULL);
+			pair.second = std::strtod(trimStr(splited[1]).c_str(), NULL);
 			printEvaluation(pair, data.lower_bound(pair.first), data);
 		}
 	}
