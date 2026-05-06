@@ -49,12 +49,22 @@ The core idea of this cursus is to build a solid C++ foundation step by step: fr
 - `ex01` `iter`: template-based iteration over raw arrays with function callbacks.
 - `ex02` `Array`: dynamic template container with bounds checking and canonical form.
 
+### Module 08 - Templated Containers and Algorithms
+- `ex00` easyfind: template function for searching elements in STL containers.
+- `ex01` Span: container class with shortcut operators and algorithm utilities (shortest span, longest span).
+- `ex02` MutantStack: stack adapter template with bidirectional iterators and standard container behavior.
+
+### Module 09 - STL Containers and Algorithms in Practice
+- `ex00` BitcoinExchange: parsing CSV data, calculating portfolio value with real Bitcoin prices.
+- `ex01` RPN: Reverse Polish Notation calculator using stack-based expression evaluation.
+- `ex02` PmergeMe: merge-insertion sort algorithm (`Ford-Johnson`) with dual container analysis.
+
 ## What I Am Going To Do
 
-The next modules continue the same progression toward modern, robust C++:
+Future modules and advanced topics:
 
-- [ ] **Module 08**: templated containers, iterators, and algorithms.
-- [ ] **Module 09**: practical STL use and algorithmic problem solving.
+- [ ] **Advanced Templates**: variadic templates, template specialization.
+- [ ] **Modern C++ Features**: C++11/14/17/20 innovations and best practices.
 
 ## Goal of This Repository
 

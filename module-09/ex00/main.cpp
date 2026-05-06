@@ -9,7 +9,7 @@ int	main(int argc, char **argv)
 		try
 		{
 			BitcoinExchange	btc;
-			btc.evaluate(trimStr(argv[1]));
+			btc.evaluate(argv[1]);
 		}
 		catch (const std::exception& e)
 		{
