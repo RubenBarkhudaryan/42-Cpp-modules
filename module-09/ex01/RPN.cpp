@@ -22,14 +22,9 @@ RPN	&RPN::operator=(const RPN &)
 	return (*this);
 }
 
-static bool	inSet(const std::string& src, char target)
+bool	inSet(const std::string& set, char target)
 {
-	for (std::size_t i = 0; i < src.size(); ++i)
-	{
-		if (src[i] == target)
-			return (true);
-	}
-	return (false);
+	return (set.find(target) != std::string::npos);
 }
 
 /*-----RPN methods-----*/
@@ -39,13 +34,24 @@ void	RPN::calculate(const std::string &input)
 
 	for (std::size_t i = 0; i < input.size(); ++i)
 	{
-		if (input[i] >= '0' && input[i] <= '9')
+		if (input[i] == ' ')
+			continue ;
+
+		if (isdigit(input[i]))
+		{
+			if (i + 1 < input.size() && isdigit(input[i + 1]))
+				throw std::runtime_error("Error");
 			rpn.push(input[i] - '0');
+		}
 		else if (inSet("+-*/", input[i]))
 		{
-			int	first = rpn.top();
+			if (rpn.size() < 2)
+				throw std::runtime_error("Error");
+
+			int first = rpn.top();
 			rpn.pop();
-			int	second = rpn.top();
+
+			int second = rpn.top();
 			rpn.pop();
 
 			if (input[i] == '+')
@@ -54,9 +60,18 @@ void	RPN::calculate(const std::string &input)
 				rpn.push(second - first);
 			else if (input[i] == '*')
 				rpn.push(second * first);
-			else if (input[i] == '/')
+			else
+			{
+				if (first == 0)
+					throw std::runtime_error("Error");
 				rpn.push(second / first);
+			}
 		}
+		else
+			throw std::runtime_error("Error");
 	}
+	if (rpn.size() != 1)
+		throw std::runtime_error("Error");
+
 	std::cout << rpn.top() << std::endl;
 }

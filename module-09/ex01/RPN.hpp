@@ -20,4 +20,6 @@ class	RPN
 		void			calculate(const std::string& input);
 };
 
+bool	inSet(const std::string& src, char target);
+
 #endif //RPN_HPP
