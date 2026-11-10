@@ -59,13 +59,6 @@ The core idea of this cursus is to build a solid C++ foundation step by step: fr
 - `ex01` RPN: Reverse Polish Notation calculator using stack-based expression evaluation.
 - `ex02` PmergeMe: merge-insertion sort algorithm (`Ford-Johnson`) with dual container analysis.
 
-## What I Am Going To Do
-
-Future modules and advanced topics:
-
-- [ ] **Advanced Templates**: variadic templates, template specialization.
-- [ ] **Modern C++ Features**: C++11/14/17/20 innovations and best practices.
-
 ## Goal of This Repository
 
 Build clean, readable, and testable C++ code while improving understanding of:
